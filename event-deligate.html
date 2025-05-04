@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Distinctio ipsa alias quo explicabo?</li>
+        <li>Possimus, sint. Hic, dolore qui?</li>
+        <li>Minus hic similique officia totam?</li>
+        <li>Velit libero pariatur fuga non!</li>
+    </ul>
+    <button id="addNewBtn">Add New</button>
+    <script>
+        const ul=document.getElementById("ul");
+        document.getElementById("addNewBtn").addEventListener("click",()=>{
+            const li=document.createElement("li");
+            li.innerText="New Item Added";
+            ul.appendChild(li);
+        })
+        ul.addEventListener("click",(e)=>{
+            e.target.parentNode.removeChild(e.target);
+        })
+    </script>
+</body>
+</html>
