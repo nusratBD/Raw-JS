@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .phone-container {
+      display: flex;
+      align-items: center;
+    }
+    .fixed-code {
+      background-color: #f0f0f0;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-right: none;
+      border-radius: 4px 0 0 4px;
+      font-family: Arial, sans-serif;
+    }
+    .phone-input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 0 4px 4px 0;
+      border-left: none;
+      width: 180px;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<h3>📞 Enter your Bangladeshi Phone Number:</h3>
+
+<!-- <div class="phone-container">
+  <div class="fixed-code">+880</div>
+  <input type="text" class="phone-input" id="phone" placeholder="1XXXXXXXXX" maxlength="10">
+</div> -->
+<div  style="display: flex;">
+    <div style="border: 1px solid black;">+880 </div>
+    <input type="text" maxlength="10" placeholder="Enter Your 10 digit Phone Number" style="width: 250px;">
+</div>
+
+<script>
+//   document.getElementById("phone").addEventListener("input", function() {
+//     // Ensure only digits are entered
+//     this.value = this.value.replace(/\D/g, "");
+//   });
+</script>
+
+</body>
+</html>
