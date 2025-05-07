@@ -58,7 +58,7 @@
   <input type="text" id="searchInput" placeholder="Enter Surah Name and Ayah number"><button style="margin: 2px" id="searchBtn">Search</button>
   <div id="ayahModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModel()">&times;</span>
+      <span class="close" id="close">&times;</span>
       <h2 id="modalSurahTitle">Surah Name - Ayah</h2>
       <p id="modalAyahArabic" style="font-size: 24px; text-align: right; font-weight: bold;"></p>
       <p id="modalAyahEnglish" style="margin-top: 10px;"></p>
@@ -66,7 +66,8 @@
   </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-  <script src="fuse.js"></script>
+  <script src="fuse.js" type="module" defer></script>
+  <script src="api.js" type="module"></script>
   <!-- <script>
     const searchInput = document.getElementById("searchInput");
     const resultsDiv = document.getElementById("results");
