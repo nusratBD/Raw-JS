@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Memory Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(90deg, #f9f9f9, #e8f0ff);
+    }
+
+    .header {
+      background-color: #0077cc;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .post-container {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .post {
+      background-color: #ffffff;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-left: 8px solid #0077cc;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s;
+    }
+
+    .post.active {
+      background-color: #d9f1ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Last Read Post Tracker</div>
+  <div class="post-container" id="post-container"></div>
+
+  <script>
+    const container = document.getElementById("post-container");
+    const totalPosts = 200;
+
+    // Create and append posts
+    for (let i = 1; i <= totalPosts; i++) {
+      const div = document.createElement("div");
+      div.classList.add("post");
+      div.id = `post-${i}`;
+      div.dataset.index = i;
+      div.innerHTML = `<strong>Post #${i}</strong><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>`;
+      container.appendChild(div);
+    }
+//Observer
+const callback=(entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const index=entry.target.dataset.index;
+        localStorage.setItem("lastPost", index);
+        document.querySelectorAll(".post").forEach(p=>p.classList.remove("active"));
+        entry.target.classList.add("active");
+      }
+    });
+}
+const option={threshold: 1.0};
+const Observer=new IntersectionObserver(callback, option);
+document.querySelectorAll(".post").forEach(post=>{Observer.observe(post);
+});
+//Scroll to the Last Post
+const lastRead=localStorage.getItem("lastPost");
+if(lastRead){
+  const lastPost=document.getElementById(`post-${lastRead}`);
+  if(lastPost){
+    lastPost.scrollIntoView({behavior:"instant", block:"center"});
+    lastPost.classList.add("active");
+  }
+}
+  </script>
+</body>
+</html>
